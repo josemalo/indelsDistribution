@@ -1,0 +1,233 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt, twoside]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{colortbl,latexsym,amssymb,amsmath,color,mathrsfs,graphicx}
+
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
+  citecolor=blue, urlcolor=blue, breaklinks=true]{hyperref} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\topmargin}{-0.25in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{8.5in}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex}  
+
+%%%%%%%%%%%%%%%%%%%% ENVIROMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\lhead[]{}
+\rhead[]{}
+\cfoot[\thepage]{\thepage}
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+
+{\Large
+\begin{center}
+{\bf Data Format for IndelsDistribution Project}
+\end{center}
+}
+
+\tableofcontents
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{indelsClosetPrimer.py: primer\_design} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tab-separated file. No header.
+A row for every primer, so two rows per target. 
+
+\begin{enumerate}
+\item {\bf primer\_seq}: in the $5' -> 3'$ direction. 
+
+\item {\bf primer\_number}: unique numeric identifier of the primers pair. 
+
+\item {\bf target\_name}: unique character identifier of the primers
+  pair, including the Targetsite. 
+
+\item {\bf target_chromosome}: as in fasta reference genome.
+
+\item {\bf target\_start}: in zero-base system. 
+
+\item {\bf target\_end}: in zero-base system. 
+
+\item {\bf target\_strand}: either $+$ or $-$. 
+
+\item {\bf target\_sequence}: in the $5' -> 3'$ direction.
+\end{enumerate}
+
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{indelsGathering.py: primer\_file}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tab-separated file. No header.
+A unique row for every primer.
+
+\begin{enumerate}
+\item {\bf primer\_seq}: in the $5' -> 3'$ direction.
+
+\item {\bf target\_name}: unique character identifier of the primers
+  pair, including the Targetsite.
+
+\item {\bf target_chromosome}: as in fasta reference genome.
+
+\item {\bf target_start}: in zero-base system.
+
+\item {\bf target_end}: in zero-base system.
+
+\item {\bf target_strand}: either $+$ or $-$.
+
+\item {\bf cleavage\_position}: in zero-base system.
+
+\item {\bf target\_sequence}: in the $5' -> 3'$ direction.
+\end{enumerate}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{indelsConsolidation.py: mix\_indels}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tab-separated file. With header.
+
+\begin{enumerate}
+\item {\bf target\_name}: unique character identifier of the primers
+  pair, including the Targetsite.
+
+\item {\bf target_chromosome}: as in fasta reference genome.
+
+\item {\bf target_start}: in zero-base system.
+
+\item {\bf target_end}: in zero-base system.
+
+\item {\bf target_strand}: either $+$ or $-$.
+
+\item {\bf cleavage\_position}: in zero-base system.
+
+\item {\bf target\_sequence}: in the $5' -> 3'$ direction.
+
+\item {\bf total\_del}: total number of deletions present in the indel.
+
+\item {\bf pos\_del}: zero-base coordinates of the start position of the deletions present in the indel, separated by '\_'.
+
+\item {\bf len\_del}: length of the deletions present in the indel, separated by '\_'.
+
+\item {\bf total\_ins}: total number of insertions present in the indel.
+
+\item {\bf pos\_ins}: zero-base coordinates of the start positions of the insertions present in the indel, separated by '\_'.
+
+\item {\bf len\_ins}: length of the insertions present in the indel, separated by '\_'.
+
+\item {\bf insertions}: insertions present in the indel, separated by '\_' and in the $5' -> 3'$ direction.
+  If none, '.' is provided.
+
+\item {\bf indel_seq}: observed neighboring sequence.
+\end{enumerate}
+
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{indelsGathering.py: del\_indels / ins\_indels}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tab-separated file. With header.
+
+
+\begin{enumerate}
+\item {\bf primer\_seq}: in the $5' -> 3'$ direction.
+
+\item {\bf target\_name}: unique character identifier of the primers
+  pair, including the Targetsite.
+
+\item {\bf target_chromosome}: as in fasta reference genome.
+
+\item {\bf target_start}: in zero-base system.
+
+\item {\bf target_end}: in zero-base system.
+
+\item {\bf target_strand}: either $+$ or $-$.
+
+\item {\bf cleavage\_position}: in zero-base system.
+
+\item {\bf target\_sequence}: in the $5' -> 3'$ direction.
+
+\item {\bf indel_class}: either "DEL" or "INS".
+
+\item {\bf indel_start}: zero-base coordinates of the start position of the deletion/insertion.
+
+\item {\bf indel_end}: zero-base coordinates of the end position of the deletion/insertion.
+
+\item {\bf indel_length}: length of the deletion/insertion.
+
+\item {\bf insertion}: insertion present, in the $5' -> 3'$ direction.
+  If none, '.' is provided.
+
+\item {\bf read_name}: read name as present in the BAM file.
+\end{enumerate}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{indelsVIZ.py: infile}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tab-separated file. No header.
+
+\begin{enumerate}
+\item {\bf name}: unique character identifier of the indel object,
+  e.g. target\_name-indels\_position-insertions.
+
+\item {\bf read_count}: total number of reads for specific target.
+
+\item {\bf del_count}: total number of deletions present in the indel.
+
+\item {\bf ins_count}: total number of insertions present in the indel.
+
+\item {\bf indel_count}: total number of indel-object.
+
+\item {\bf indel_PCT}: percentage of the indel-object w.r.t. the total number of reads.
+
+\item {\bf del_start_pos}: positions, w.r.t. the expected cleavage site,
+  of the start positions of the deletions present in the filtered indel, separated by '\_'.
+
+\item {\bf del_end_pos}: positions, w.r.t. the expected cleavage site,
+  of the end positions of the deletions present in the filtered indel, separated by '\_'.
+
+\item {\bf ins_start_pos}: positions, w.r.t. the expected cleavage site,
+  of the start positions of the insertions present in the filtered indel, separated by '\_'.
+
+\item {\bf ins_end_pos}: positions, w.r.t. the expected cleavage site,
+  of the end positions of the insertions present in the filtered indel, separated by '\_'.
+
+\item {\bf del_seq}: reference sequence where deletions are represented by '-'.
+
+\item {\bf insertion}: insertions present in the indel, separated by '\_' and in the $5' -> 3'$ direction.
+  If none, '.' is provided.
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
